@@ -52,6 +52,9 @@ function App() {
 
     <section className="section wrap how"><h2>How it works</h2><div className="how-copy"><p>Start by organizing the projects, sites and teams you need to coordinate.</p><p>Then keep progress, purchasing and costs current as the work moves forward.</p><p>After that, use the shared view to see what needs attention and make the next call.</p></div></section>
 
+    <section className="section product-tour" aria-labelledby="screens-title"><div className="wrap"><h2 id="screens-title">A closer look at Paver</h2><p className="tour-intro">Actual product screens from the Paver workspace.</p><div className="screens-gallery"><figure><img src="/demo/projects.webp" alt="Paver workspace showing construction projects and their progress" loading="lazy"/><figcaption>Projects and progress</figcaption></figure><figure><img src="/demo/finance.webp" alt="Paver workspace showing project finance and costs" loading="lazy"/><figcaption>Project finance</figcaption></figure><figure><img src="/demo/inventory.webp" alt="Paver workspace showing materials and inventory" loading="lazy"/><figcaption>Materials and inventory</figcaption></figure></div></div></section>
+    <section className="section wrap video-section" aria-labelledby="video-title"><div className="video-copy"><h2 id="video-title">See how it works</h2><p>A prerecorded walkthrough of the Paver workspace.</p></div><video className="explainer-video" controls playsInline preload="metadata" poster="/demo/video-poster.jpg"><source src="/demo/paver-explainer.mp4" type="video/mp4"/><track kind="captions" src="/demo/paver-explainer.vtt" srcLang="en" label="English" default/>Your browser does not support HTML video.</video></section>
+
     <section className="section wrap download" id="download">
       <div className="download-intro"><h2>Get Paver for desktop</h2><p>The desktop app securely opens the hosted Paver workspace. Downloads are unsigned and may prompt an operating system warning.</p></div>
       <div className="download-list">
@@ -70,14 +73,7 @@ function App() {
 }
 
 function ProductPreview() {
-  return <div className="product-frame" aria-label="Illustrative Paver interface preview">
-    <div className="frame-head"><span className="mark">P</span><strong>Paver</strong><span>Sample workspace</span></div>
-    <div className="frame-body"><aside><b>Workspace</b><span>Overview</span><span>Projects</span><span>Sites</span><span>Materials</span><span>Purchasing</span><span>Workforce</span></aside>
-      <div className="preview-content"><p className="preview-label">WORKSPACE / OVERVIEW</p><h3>Project overview</h3><p>Illustrative interface, fictional sample content</p>
-        <div className="preview-lines"><div><b>North Yard</b><span>Project, in progress</span></div><div><b>Delivery window</b><span>Materials, ready to review</span></div><div><b>Site allocation</b><span>Budget, tracking</span></div></div>
-      </div>
-    </div>
-  </div>;
+  return <figure className="product-frame hero-screen"><figcaption className="frame-head"><span className="mark">P</span><strong>Paver</strong><span>The Paver workspace</span></figcaption><img src="/demo/dashboard.webp" alt="Paver dashboard showing a construction workspace overview" fetchPriority="high"/></figure>;
 }
 
 createRoot(document.getElementById('root')!).render(<App />);
