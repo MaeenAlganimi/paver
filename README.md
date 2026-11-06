@@ -1,6 +1,6 @@
 # Paver
 
-**Website # Paver free download:** https://paver-site.vercel.app
+**Website & free download:** https://paver-site.vercel.app
 
 Paver is a construction operations workspace for projects, sites, materials, purchasing, workforce, budgets and reporting. This repository is the public product site and a small desktop wrapper; the hosted application source is maintained separately in a private repository.
 
