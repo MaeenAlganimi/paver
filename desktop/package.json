@@ -6,8 +6,7 @@
   "scripts": {
     "start": "electron .",
     "dist:linux": "electron-builder --linux AppImage --x64",
-    "dist:win:nsis": "electron-builder --win nsis --x64",
-    "dist:win:zip": "electron-builder --win zip --x64 --config.win.target=zip"
+    "build:windows": "electron-builder --win dir --x64 --config.win.signAndEditExecutable=false"
   },
   "devDependencies": {
     "electron": "^33.2.1",
@@ -43,20 +42,22 @@
     "win": {
       "target": [
         {
-          "target": "zip",
+          "target": "nsis",
           "arch": [
             "x64"
           ]
         }
       ],
       "icon": "assets/icon.ico",
-      "artifactName": "Paver-win-x64.zip",
+      "artifactName": "Paver-Setup-x64.exe",
       "signAndEditExecutable": false
     },
     "nsis": {
       "oneClick": true,
       "perMachine": false,
-      "allowToChangeInstallationDirectory": false
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     }
   }
 }

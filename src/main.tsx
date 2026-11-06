@@ -8,7 +8,7 @@ const appUrl = 'https://paver-ashy.vercel.app';
 type Artifact = { size: string; sha256: string };
 const artifacts = manifest as Record<string, Artifact>;
 const downloads = [
-  { platform: 'Windows', file: 'Paver-win-x64.zip', detail: 'Windows 10 or later, x64, portable ZIP' },
+  { platform: 'Windows', file: 'Paver-Setup-x64.exe', detail: 'Windows 10 or later, x64, setup installer' },
   { platform: 'Linux', file: 'Paver-x86_64.AppImage', detail: 'Linux, x86_64 AppImage' },
 ];
 const features = [
@@ -20,7 +20,7 @@ const features = [
 const faqs = [
   ['What is Paver?', 'A construction operations workspace for projects, sites, materials, purchasing, workforce, budgets and reporting.'],
   ['What does the desktop app do?', 'It is a secure desktop wrapper that opens the hosted Paver web app. It does not include the private application source.'],
-  ['Why does Windows show a warning?', 'The desktop builds are unsigned. Windows SmartScreen may show a warning when you launch the downloaded app.'],
+  ['Why does Windows show a warning?', 'The desktop builds are unsigned. Windows SmartScreen may show a warning when you run the installer.'],
   ['Is there a macOS download?', 'Not yet. A macOS build is coming later and requires a Mac to build and sign.'],
   ['Can I use Paver offline?', 'The desktop wrapper has an offline screen with a retry option. The hosted workspace requires an internet connection.'],
 ];
@@ -61,7 +61,7 @@ function App() {
         </div>)}
         <div className="download-row coming"><div><h3>macOS</h3><p>Coming later. A Mac build is required</p></div><span>Coming later</span></div>
       </div>
-      <p className="download-note">Windows is distributed as a portable ZIP, not an installer. SmartScreen may warn because the app is unsigned.</p>
+      <p className="download-note">Windows is a one-click setup .exe that installs for your user and adds Start Menu and desktop shortcuts. Builds are not code-signed, so SmartScreen may warn: choose More info → Run anyway.</p>
     </section>
 
     <section className="section faq"><div className="wrap faq-layout"><h2>Questions</h2><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<ChevronDown size={17} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></div></section>

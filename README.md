@@ -25,13 +25,13 @@ The Electron desktop app is a secure wrapper around the hosted web app. It loads
 
 The current desktop builds are unsigned:
 
-- **Windows:** portable x64 ZIP (`Paver-win-x64.zip`). Windows SmartScreen may show a warning.
+- **Windows:** setup installer (`Paver-Setup-x64.exe`). Windows is a one-click setup `.exe` (per-user install, Start Menu and desktop shortcuts, uninstall from Settings → Apps). Builds are not code-signed, so SmartScreen may warn: choose More info → Run anyway.
 - **Linux:** x86_64 AppImage (`Paver-x86_64.AppImage`).
 - **macOS:** coming later; it requires a Mac build.
 
 Download links use stable GitHub release asset URLs for this repository and will work after the artifacts are attached to a public GitHub release. The exact locally built artifacts and their SHA256 checksums are recorded in `desktop/release/manifest.json` (build output, gitignored) and its committed copy at `src/manifest.json`.
 
-Build from `desktop/` with `npm ci`, then `npm run dist:linux` or `npm run dist:win:zip`. An NSIS Windows installer was attempted but electron-builder requires Wine on this Linux host; Wine is unavailable, so the portable ZIP is offered instead. macOS is not built here.
+Build from `desktop/` with `npm ci`, then `npm run dist:linux`. The Windows installer is compiled with the native Linux `makensis` from [`desktop/installer.nsi`](desktop/installer.nsi) (no Wine needed): build `win-unpacked` with electron-builder, then run `makensis -DPRODUCT=... -DAPPID=... -DVERSION=1.0.1 -DSRC=<win-unpacked> -DOUTFILE=<Setup.exe> desktop/installer.nsi`. macOS is not built here.
 
 ## Privacy and project scope
 
