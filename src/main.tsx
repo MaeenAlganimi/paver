@@ -1,30 +1,83 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
-import type { LucideIcon } from 'lucide-react';
-import { ArrowDown, ArrowUpRight, Boxes, BriefcaseBusiness, ChevronDown, ClipboardList, Download, HardHat, Layers3, LockKeyhole, Menu, Moon, Sun, WalletCards, X } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import manifest from './manifest.json';
 import './style.css';
-const origin='https://paver-ashy.vercel.app';
-type Artifact = { size: string; sha256: string };
-const artifactManifest = manifest as Record<string, Artifact>;
-const downloads=[{name:'Windows',file:'Paver-win-x64.zip',meta:'Windows 10 or later · x64 · Portable ZIP',icon:'⊞'}, {name:'Linux',file:'Paver-x86_64.AppImage',meta:'Linux · x86_64 · AppImage',icon:'◈'}];
-const featureItems: [LucideIcon,string,string][] = [[BriefcaseBusiness,'Projects & sites','Track project details, milestones, progress and field records.'],[Boxes,'Materials & purchasing','Follow requests, inventory, equipment and supplier records.'],[HardHat,'People & workforce','Keep teams, responsibilities and work activity in view.'],[WalletCards,'Budgets & expenses','Connect budgets with expenses, bills and cash records.'],[ClipboardList,'Reports & records','Find a clearer view of activity and keep useful records close.'],[Layers3,'One connected workspace','Bring everyday operations together with role-aware access.']];
-function App(){const [dark,setDark]=useState(true),[menu,setMenu]=useState(false); return <main data-theme={dark?'dark':'light'}>
-<header className="nav"><a href="#top" className="brand"><span className="mark">P</span>Paver</a><nav className={menu?'open':''}><a href="#features">Product</a><a href="#workflow">How it works</a><a href="#security">Privacy</a><a href="#faq">FAQ</a><a className="nav-download" href="#download">Download <ArrowDown size={15}/></a></nav><div className="nav-actions"><button className="icon-btn" onClick={()=>setDark(!dark)} aria-label="Toggle color theme">{dark?<Sun size={18}/>:<Moon size={18}/>}</button><a className="top-cta" href={origin} target="_blank" rel="noreferrer">Open web app <ArrowUpRight size={15}/></a><button className="icon-btn mobile-menu" onClick={()=>setMenu(!menu)} aria-label="Toggle navigation">{menu?<X/>:<Menu/>}</button></div></header>
-<section id="top" className="hero wrap"><div className="hero-copy"><div className="eyebrow"><span className="live-dot"/> CONSTRUCTION OPERATIONS, CONNECTED</div><h1>Build with<br/><em>more clarity.</em></h1><p className="lede">The work moves fast. Keep projects, people, materials and money moving together.</p><div className="hero-buttons"><a className="button primary" href="#download"><Download size={17}/> Get Paver for desktop</a><a className="button secondary" href={origin} target="_blank" rel="noreferrer">Open the web app <ArrowUpRight size={16}/></a></div><div className="hero-note"><LockKeyhole size={14}/> One workspace for the work behind every build.</div></div><ProductPreview/></section>
-<section className="ticker"><div>PROJECTS <b>✳</b> SITES <b>✳</b> MATERIALS <b>✳</b> PURCHASING <b>✳</b> WORKFORCE <b>✳</b> BUDGETS <b>✳</b> REPORTING <b>✳</b></div></section>
-<section className="section wrap problem"><div><div className="eyebrow">THE SITE IS ONLY PART OF THE JOB</div><h2>Too many moving parts.<br/><em>One place to see them.</em></h2></div><p>When project details live in separate spreadsheets, chats and notebooks, it gets harder to know what is happening and what needs attention. Paver brings the day-to-day picture into one practical workspace.</p></section>
-<section id="features" className="section features"><div className="wrap"><div className="eyebrow">A CLEARER VIEW OF THE WORK</div><h2>Made for the whole<br/><em>construction operation.</em></h2><div className="feature-grid">{featureItems.map(([Icon,title,copy])=><article className="feature-card" key={title}><span className="feature-icon"><Icon size={20}/></span><h3>{title}</h3><p>{copy}</p><ArrowUpRight size={16} className="feature-arrow"/></article>)}</div></div></section>
-<section id="workflow" className="section wrap workflow"><div className="eyebrow">GET FROM PLAN TO PROGRESS</div><h2>Less chasing.<br/><em>More doing.</em></h2><div className="steps">{[['01','Set up the workspace','Organize the projects, sites and teams you need to coordinate.'],['02','Keep the picture current','Record progress, purchasing and costs as the work moves forward.'],['03','Make the next call','Use the shared view to spot what needs attention and act.']].map(([n,t,c])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{c}</p></article>)}</div></section>
-<section className="screens section"><div className="wrap screen-copy"><div><div className="eyebrow">A QUICK LOOK</div><h2>See the moving<br/><em>parts at a glance.</em></h2><p>Product views shown below are illustrative interface mockups created for this public site. They use fictional labels and sample values.</p></div><div className="screen-tag"><span className="live-dot"/> ILLUSTRATIVE MOCKUP</div></div><div className="wrap mockups"><DashboardMock/><MobileMock/></div></section>
-<section className="section wrap stack"><div><div className="eyebrow">BUILT WITH A MODERN WEB STACK</div><h2>Simple to access.<br/><em>Thoughtful by design.</em></h2><p>Paver’s hosted workspace is a full-stack web application. This public site is a separate, static Vite and React experience; the desktop downloads are lightweight Electron shells around the hosted app.</p></div><div className="stack-list"><div><span className="stack-badge">WEB</span><strong>Next.js · React · TypeScript</strong></div><div><span className="stack-badge">DATA</span><strong>PostgreSQL · Prisma</strong></div><div><span className="stack-badge">DESKTOP</span><strong>Electron · Chromium</strong></div><div><span className="stack-badge">PUBLIC SITE</span><strong>Vite · React · TypeScript</strong></div></div></section>
-<section id="security" className="section security"><div className="wrap security-inner"><div className="security-icon"><LockKeyhole size={25}/></div><div><div className="eyebrow">PRIVACY & SECURITY</div><h2>Your workspace stays <em>yours.</em></h2><p>The desktop app loads Paver’s hosted web application and does not bundle the private application source. Its renderer runs with context isolation and sandboxing, without Node.js integration; navigation stays on the Paver origin. App downloads are unsigned and may show an operating-system security prompt. Review the project’s privacy and security practices before entering sensitive information.</p><a href={origin} target="_blank" rel="noreferrer" className="text-link">Visit the hosted app <ArrowUpRight size={15}/></a></div></div></section>
-<section id="download" className="section wrap download"><div className="download-head"><div><div className="eyebrow">FREE DESKTOP DOWNLOADS</div><h2>Ready when<br/><em>you are.</em></h2></div><p>Get the Paver desktop wrapper for your computer. Sign in securely through the hosted Paver app.</p></div><div className="download-grid">{downloads.map(d=><article className="download-card" key={d.name}><div className="os-icon">{d.icon}</div><div className="download-platform"><h3>{d.name}</h3><span>{d.meta}</span><div className="integrity">{artifactManifest[d.file]?.size ?? 'Build pending'} · SHA256 <code>{artifactManifest[d.file]?.sha256 ?? 'pending'}</code></div></div><a className="download-button" href={`https://github.com/MaeenAlganimi/paver/releases/latest/download/${d.file}`}><Download size={16}/> Download</a></article>)}<article className="download-card coming"><div className="os-icon">⌘</div><div className="download-platform"><h3>macOS</h3><span>Coming later · Requires a Mac build</span><div className="integrity">The macOS app is not currently available.</div></div><span className="coming-tag">COMING LATER</span></article></div><p className="unsigned-note">Windows download is a portable ZIP. Builds are unsigned; Windows SmartScreen may show a warning.</p></section>
-<section id="faq" className="section faq"><div className="wrap faq-inner"><div><div className="eyebrow">GOOD TO KNOW</div><h2>A few quick<br/><em>answers.</em></h2></div><div className="faq-list">{[['What is Paver?','A construction operations workspace for projects, sites, materials, purchasing, workforce, budgets and reporting.'],['Is the desktop app a separate system?','No. It is a desktop wrapper that opens the hosted web app at paver-ashy.vercel.app. Your account and application data remain in that hosted service.'],['Is it free?','The desktop wrapper and this public product site are available to download and use at no charge. Check the hosted app for current access details.'],['Why does Windows warn me?','The Windows build is unsigned. SmartScreen may show a warning when you launch the downloaded app.'],['Where is the macOS version?','macOS is coming later. Building and signing the macOS app requires a Mac.'],['Does the desktop app work offline?','The wrapper includes a branded offline screen with a retry option. The hosted workspace itself requires an internet connection.']].map(([q,a])=><details key={q}><summary>{q}<ChevronDown size={17}/></summary><p>{a}</p></details>)}</div></div></section>
-<footer className="footer wrap"><a href="#top" className="brand"><span className="mark">P</span>Paver</a><p>Clearer coordination for the work that builds the world.</p><div><a href={origin} target="_blank" rel="noreferrer">Open web app <ArrowUpRight size={14}/></a><a href="#download">Downloads</a></div><small>© 2026 Paver · Public product site</small></footer>
-</main>}
-function ProductPreview(){return <div className="hero-preview"><div className="preview-glow"/><div className="app-window"><div className="window-bar"><div className="mini-brand"><span className="mark">P</span>Paver <small>WORKSPACE</small></div><div className="window-controls"><i/><i/><i/></div></div><div className="app-body"><aside><div className="side-label">WORKSPACE</div>{['Overview','Projects','Sites','Materials','Purchasing','Workforce','Budgets','Reports'].map((x,i)=><div key={x} className={'side-item '+(!i?'selected':'')}><span>{['◫','▧','⌂','◈','↗','♙','◉','▤'][i]}</span>{x}</div>)}<div className="profile"><span className="avatar">PM</span><div>Project manager<small>Workspace</small></div></div></aside><div className="app-content"><div className="crumb">WORKSPACE <b>/</b> OVERVIEW</div><div className="dash-title"><div><small>THURSDAY, 06 NOVEMBER</small><h3>Good morning, team</h3><p>Here’s a view of your work today.</p></div><button>＋ &nbsp;New update</button></div><div className="metric-row">{[['ACTIVE PROJECTS','08','+2 this month'],['OPEN REQUESTS','14','Across 4 sites'],['BUDGET TRACKED','$2.4m','Across active work']].map(([l,v,c])=><div className="metric" key={l}><small>{l}</small><strong>{v}</strong><span>{c}</span></div>)}</div><div className="chart-card"><div className="chart-head"><b>Project progress</b><span>All projects⌄</span></div><div className="graph"><div className="gridlines"><i/><i/><i/><i/></div><svg viewBox="0 0 500 120" preserveAspectRatio="none" aria-label="Illustrative progress chart"><path d="M0 95 C50 90 70 72 110 78 S160 50 210 59 S280 45 320 48 S390 15 430 30 S470 20 500 12"/><path className="area" d="M0 95 C50 90 70 72 110 78 S160 50 210 59 S280 45 320 48 S390 15 430 30 S470 20 500 12 L500 120 L0 120Z"/></svg></div><div className="chart-labels"><span>JUL</span><span>AUG</span><span>SEP</span><span>OCT</span><span>NOV</span></div></div></div></div></div><div className="preview-caption"><span>PROJECT OVERVIEW</span><i/> SAMPLE DATA · ILLUSTRATIVE</div></div>}
-function DashboardMock(){return <div className="dash-mock"><div className="mock-top"><span className="mark">P</span> Paver <small>OVERVIEW</small><span className="mock-date">TODAY · SAMPLE WORKSPACE</span></div><div className="mock-content"><div className="mock-heading">A clearer view of the work.<small>Illustrative interface · fictional values</small></div><div className="mock-stats"><div><small>PROJECTS</small><b>North Yard</b><span>Progress · 68%</span><i><u style={{width:'68%'}}/></i></div><div><small>MATERIALS</small><b>Delivery window</b><span>Request · Ready to review</span><i><u style={{width:'42%'}}/></i></div><div><small>BUDGET</small><b>Site allocation</b><span>Tracking · In progress</span><i><u style={{width:'83%'}}/></i></div></div><div className="mock-table"><span>RECENT ACTIVITY</span><div>Field progress update <b>North Yard · Today</b></div><div>Material request <b>East Workshop · Yesterday</b></div></div></div></div>}
-function MobileMock(){return <div className="mobile-mock"><div className="phone"><div className="phone-notch"/><div className="phone-brand"><span className="mark">P</span> Paver <span>☰</span></div><small>WORKSPACE OVERVIEW</small><h3>Good morning.</h3><p>Here’s the work at a glance.</p><div className="phone-card"><small>ACTIVE PROJECTS</small><b>08</b><span>Across your workspace</span></div><div className="phone-card"><small>RECENT ACTIVITY</small><b>Site update</b><span>Progress recorded · Today</span></div><div className="phone-nav">⌂　▧　◈　☰</div></div><span className="mobile-label">RESPONSIVE BY DESIGN</span></div>}
 
-createRoot(document.getElementById('root')!).render(<App/>);
+const appUrl = 'https://paver-ashy.vercel.app';
+type Artifact = { size: string; sha256: string };
+const artifacts = manifest as Record<string, Artifact>;
+const downloads = [
+  { platform: 'Windows', file: 'Paver-win-x64.zip', detail: 'Windows 10 or later, x64, portable ZIP' },
+  { platform: 'Linux', file: 'Paver-x86_64.AppImage', detail: 'Linux, x86_64 AppImage' },
+];
+const features = [
+  ['Projects and sites', 'Keep project details, milestones, progress and field records together.'],
+  ['Materials and purchasing', 'Follow requests, inventory, equipment and supplier records.'],
+  ['People and workforce', 'Keep teams, responsibilities and work activity in view.'],
+  ['Budgets and records', 'Bring expenses, bills, reports and day-to-day records into the same workspace.'],
+];
+const faqs = [
+  ['What is Paver?', 'A construction operations workspace for projects, sites, materials, purchasing, workforce, budgets and reporting.'],
+  ['What does the desktop app do?', 'It is a secure desktop wrapper that opens the hosted Paver web app. It does not include the private application source.'],
+  ['Why does Windows show a warning?', 'The desktop builds are unsigned. Windows SmartScreen may show a warning when you launch the downloaded app.'],
+  ['Is there a macOS download?', 'Not yet. A macOS build is coming later and requires a Mac to build and sign.'],
+  ['Can I use Paver offline?', 'The desktop wrapper has an offline screen with a retry option. The hosted workspace requires an internet connection.'],
+];
+function App() {
+  return <main id="top">
+    <header className="nav wrap">
+      <a className="brand" href="#top" aria-label="Paver home"><span className="mark">P</span><span>Paver</span></a>
+      <nav aria-label="Main navigation"><a href="#features">Features</a><a href="#download">Download</a><a href="https://github.com/MaeenAlganimi/paver" target="_blank" rel="noreferrer">GitHub</a></nav>
+      <a className="button primary nav-cta" href="#download">Download</a>
+    </header>
+
+    <section className="hero wrap">
+      <div className="hero-copy">
+        <h1>Keep construction work in view.</h1>
+        <p>Paver brings projects, sites, materials, people and budgets into one workspace. It gives teams a shared place to keep the practical details moving.</p>
+        <div className="hero-actions"><a className="button primary" href="#download">Download Paver</a><a className="text-link" href={appUrl} target="_blank" rel="noreferrer">Open the web app</a></div>
+      </div>
+      <ProductPreview />
+    </section>
+
+    <section className="section wrap who" aria-labelledby="who-title">
+      <div><h2 id="who-title">A workspace for the work around the build.</h2></div>
+      <p>Paver is for construction teams coordinating jobs across the office and site. Keep plans, purchasing, workforce updates and costs close enough to make the next decision with context.</p>
+    </section>
+
+    <section id="features" className="section features">
+      <div className="wrap"><h2>What Paver brings together</h2><dl className="feature-list">{features.map(([name, copy]) => <div key={name}><dt>{name}</dt><dd>{copy}</dd></div>)}</dl></div>
+    </section>
+
+    <section className="section wrap how"><h2>How it works</h2><div className="how-copy"><p>Start by organizing the projects, sites and teams you need to coordinate.</p><p>Then keep progress, purchasing and costs current as the work moves forward.</p><p>After that, use the shared view to see what needs attention and make the next call.</p></div></section>
+
+    <section className="section wrap download" id="download">
+      <div className="download-intro"><h2>Get Paver for desktop</h2><p>The desktop app securely opens the hosted Paver workspace. Downloads are unsigned and may prompt an operating system warning.</p></div>
+      <div className="download-list">
+        {downloads.map(({ platform, file, detail }) => <div className="download-row" key={file}>
+          <div><h3>{platform}</h3><p>{detail}</p><p className="integrity">{artifacts[file]?.size ?? 'Size unavailable'} <span>SHA256</span> <code>{artifacts[file]?.sha256 ?? 'Unavailable'}</code></p></div>
+          <a className="button primary download-button" href={`https://github.com/MaeenAlganimi/paver/releases/latest/download/${file}`}>Download</a>
+        </div>)}
+        <div className="download-row coming"><div><h3>macOS</h3><p>Coming later. A Mac build is required</p></div><span>Coming later</span></div>
+      </div>
+      <p className="download-note">Windows is distributed as a portable ZIP, not an installer. SmartScreen may warn because the app is unsigned.</p>
+    </section>
+
+    <section className="section faq"><div className="wrap faq-layout"><h2>Questions</h2><div className="faq-list">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<ChevronDown size={17} aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></div></section>
+    <footer className="footer wrap"><a className="brand" href="#top"><span className="mark">P</span><span>Paver</span></a><p>Public product site and secure desktop wrapper.</p><a href="https://github.com/MaeenAlganimi/paver" target="_blank" rel="noreferrer">GitHub</a><small>Built with AI assistance. The hosted application is maintained separately.</small></footer>
+  </main>;
+}
+
+function ProductPreview() {
+  return <div className="product-frame" aria-label="Illustrative Paver interface preview">
+    <div className="frame-head"><span className="mark">P</span><strong>Paver</strong><span>Sample workspace</span></div>
+    <div className="frame-body"><aside><b>Workspace</b><span>Overview</span><span>Projects</span><span>Sites</span><span>Materials</span><span>Purchasing</span><span>Workforce</span></aside>
+      <div className="preview-content"><p className="preview-label">WORKSPACE / OVERVIEW</p><h3>Project overview</h3><p>Illustrative interface, fictional sample content</p>
+        <div className="preview-lines"><div><b>North Yard</b><span>Project, in progress</span></div><div><b>Delivery window</b><span>Materials, ready to review</span></div><div><b>Site allocation</b><span>Budget, tracking</span></div></div>
+      </div>
+    </div>
+  </div>;
+}
+
+createRoot(document.getElementById('root')!).render(<App />);

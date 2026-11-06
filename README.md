@@ -6,7 +6,7 @@ Paver is a construction operations workspace for projects, sites, materials, pur
 
 ## Public website
 
-The static marketing site is built with Vite, React and TypeScript. It includes product information, clearly labeled illustrative interface mockups, privacy notes, FAQs and desktop download links. It supports light and dark themes, responsive layouts, keyboard-accessible controls and reduced motion.
+The static marketing site is built with Vite, React and TypeScript. It includes product information, clearly labeled illustrative interface mockups, privacy notes, FAQs and desktop download links. It uses the shared Paver studio theme, responsive layouts and reduced motion.
 
 Run it locally with Node.js 20 or newer:
 
