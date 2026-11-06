@@ -1,0 +1,62 @@
+{
+  "name": "paver-desktop",
+  "version": "1.0.0",
+  "description": "Secure desktop wrapper for the hosted Paver workspace",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "dist:linux": "electron-builder --linux AppImage --x64",
+    "dist:win:nsis": "electron-builder --win nsis --x64",
+    "dist:win:zip": "electron-builder --win zip --x64 --config.win.target=zip"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.paver.desktop",
+    "productName": "Paver",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.cjs",
+      "preload.cjs",
+      "offline.html",
+      "assets/**/*",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Office",
+      "artifactName": "Paver-${arch}.AppImage",
+      "icon": "assets/icon.png"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "artifactName": "Paver-win-x64.zip",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false
+    }
+  }
+}

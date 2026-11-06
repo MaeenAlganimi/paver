@@ -1,0 +1,9 @@
+node_modules
+dist
+*.tsbuildinfo
+desktop/node_modules
+desktop/dist
+desktop/release
+.DS_Store
+.env*
+!.env.example

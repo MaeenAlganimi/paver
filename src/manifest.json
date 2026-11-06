@@ -1,0 +1,12 @@
+{
+  "Paver-win-x64.zip": {
+    "name": "Paver-win-x64.zip",
+    "size": "106.0 MB",
+    "sha256": "dc74bf13a26749abc2ad17cf384f8b7389cb36b6af71aa2e6f9289cd02f84c07"
+  },
+  "Paver-x86_64.AppImage": {
+    "name": "Paver-x86_64.AppImage",
+    "size": "103.0 MB",
+    "sha256": "3c2b635512864a9993da14102d4af76a8855bef615e1c81d59ac367e8ff66c3f"
+  }
+}
