@@ -35,3 +35,5 @@ html[dir="rtl"] .hero h1,html[dir="rtl"] .section h2,html[dir="rtl"] .button,htm
 @media(max-width:760px){.nav-actions{gap:6px}.language-toggle{padding:8px 7px}.nav-cta{white-space:nowrap}}
 @media(max-width:520px){.nav{height:auto;min-height:64px;flex-wrap:wrap;padding-block:9px;row-gap:8px}.nav nav{order:3;flex:1 0 100%;justify-content:center;margin:0;padding-block:2px}.nav-actions{margin-inline-start:auto}.nav nav a{font-size:12px}.nav-cta{padding:8px 10px}.language-toggle{min-height:34px}}
 @media(max-width:340px){.wrap{width:calc(100% - 28px)}.nav-actions{gap:5px}.nav-cta{padding:7px 8px;font-size:11px}.language-toggle{font-size:12px;padding-inline:6px}.brand{font-size:14px}}
+
+.hero-actions{flex-wrap:wrap}.contact-link{flex-basis:100%;line-height:1.6;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
