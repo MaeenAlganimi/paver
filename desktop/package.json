@@ -2,15 +2,20 @@
   "name": "paver-desktop",
   "version": "1.0.0",
   "description": "Secure desktop wrapper for the hosted Paver workspace",
+  "author": {
+    "name": "Maeen Alganimi"
+  },
+  "license": "MIT",
   "main": "main.cjs",
   "scripts": {
     "start": "electron .",
     "dist:linux": "electron-builder --linux AppImage --x64",
-    "build:windows": "electron-builder --win dir --x64 --config.win.signAndEditExecutable=false"
+    "build:windows": "electron-builder --win dir --x64 --config.win.signAndEditExecutable=false",
+    "dist:win": "electron-builder --win nsis --x64"
   },
   "devDependencies": {
-    "electron": "^33.2.1",
-    "electron-builder": "^25.1.8"
+    "electron": "^45.3.0",
+    "electron-builder": "^26.18.0"
   },
   "build": {
     "appId": "com.paver.desktop",
@@ -58,6 +63,17 @@
       "allowToChangeInstallationDirectory": false,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "MaeenAlganimi",
+        "repo": "paver",
+        "releaseType": "release"
+      }
+    ]
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.11"
   }
 }
