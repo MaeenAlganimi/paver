@@ -35,7 +35,7 @@ Build from `desktop/` with `npm ci`, then `npm run dist:linux`. The Windows inst
 
 ### Releases and auto-updates
 
-Pushing a tag such as `v1.0.1` (it must match `version` in `desktop/package.json`) runs the release workflow (`.github/workflows/release.yml`, staged at `ci/release.yml` until it is moved there), which builds the Windows setup installer (with electron-builder's NSIS target) and the Linux AppImage on GitHub Actions and attaches them, with the `latest.yml` / `latest-linux.yml` update metadata, to that tag's GitHub release. Installed apps use `electron-updater` to check this repository's GitHub Releases and install a newer version when the app quits. Apps installed from v1.0.0 do not include the updater, so those users need to install the next version manually once.
+Pushing a tag such as `v1.0.1` (it must match `version` in `desktop/package.json`) runs `.github/workflows/release.yml`, which builds the Windows setup installer (with electron-builder's NSIS target) and the Linux AppImage on GitHub Actions and attaches them, with the `latest.yml` / `latest-linux.yml` update metadata, to that tag's GitHub release. Installed apps use `electron-updater` to check this repository's GitHub Releases and install a newer version when the app quits. Apps installed from v1.0.0 do not include the updater, so those users need to install the next version manually once.
 
 ## Privacy and project scope
 
