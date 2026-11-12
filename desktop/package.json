@@ -71,7 +71,11 @@
         "repo": "paver",
         "releaseType": "release"
       }
-    ]
+    ],
+    "mac": {
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.business"
+    }
   },
   "dependencies": {
     "electron-updater": "^6.8.11"
