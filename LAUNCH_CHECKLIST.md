@@ -17,3 +17,10 @@ Done on `launch-readiness`: Electron 45 + auto-update via GitHub Releases, CI/re
 ## Nice to have
 - [ ] Link privacy/terms from the hosted app's login and signup pages.
 - [ ] Re-capture the OG image with the new icon if you want them to match.
+
+## Mobile apps (mobile/)
+
+- [ ] Confirm the app ID (`com.qudralabs.*`) before the first store upload — it can't change afterwards.
+- [ ] Google Play: developer account (one-time $25), create an upload keystore, add the 4 `ANDROID_*` secrets, run the "Android app" workflow, upload the `.aab`. Play also needs a privacy policy URL (the `/privacy` page), screenshots and a content rating form.
+- [ ] Apple App Store: Apple Developer Program ($99/year) and a Mac with Xcode to build `mobile/ios`. Apple may reject apps that only show a website (guideline 4.2) — plan a native feature (push reminders, camera upload) if that happens.
+- [ ] Clear the GitHub billing lock so the Android workflow can run.
