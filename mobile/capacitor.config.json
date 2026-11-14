@@ -1,0 +1,31 @@
+{
+  "appId": "com.qudralabs.paver",
+  "appName": "Paver",
+  "webDir": "www",
+  "server": {
+    "url": "https://paver-ashy.vercel.app",
+    "cleartext": false,
+    "errorPath": "offline.html",
+    "allowNavigation": ["paver-ashy.vercel.app"]
+  },
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#191919"
+  },
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#191919"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 800,
+      "backgroundColor": "#191919",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#191919",
+      "overlaysWebView": false
+    }
+  }
+}
