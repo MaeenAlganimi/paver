@@ -1,0 +1,84 @@
+name: Release desktop app
+
+# Builds the Windows installer and Linux AppImage and attaches them (plus the
+# auto-update metadata files) to the GitHub release for the pushed tag.
+# Trigger: push a tag like v1.0.1 whose version matches desktop/package.json.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - os: windows-latest
+            target: --win nsis --x64 --config.win.signAndEditExecutable=true
+            files: |
+              desktop/release/Paver-Setup-x64.exe
+              desktop/release/Paver-Setup-x64.exe.blockmap
+              desktop/release/latest.yml
+          - os: ubuntu-latest
+            target: --linux AppImage --x64
+            files: |
+              desktop/release/Paver-x86_64.AppImage
+              desktop/release/latest-linux.yml
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: desktop
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: desktop/package-lock.json
+      - name: Check tag matches desktop/package.json version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(node -p "require('./package.json').version")"
+          if [ "$tag" != "$version" ]; then
+            echo "::error::Tag v$tag does not match desktop/package.json version $version"
+            exit 1
+          fi
+      - run: npm ci
+      - name: Build (unsigned)
+        run: npx electron-builder ${{ matrix.target }} --publish never
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}
+          path: ${{ matrix.files }}
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Create or update the GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          ls -la dist
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --verify-tag --title "Paver Desktop ${TAG#v}" \
+              --notes "Unsigned desktop builds: Windows setup installer (Paver-Setup-x64.exe) and Linux AppImage (Paver-x86_64.AppImage). Windows SmartScreen may warn because builds are not code-signed."
+          fi
+          gh release upload "$TAG" dist/* --clobber

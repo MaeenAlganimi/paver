@@ -37,3 +37,13 @@ html[dir="rtl"] .hero h1,html[dir="rtl"] .section h2,html[dir="rtl"] .button,htm
 @media(max-width:340px){.wrap{width:calc(100% - 28px)}.nav-actions{gap:5px}.nav-cta{padding:7px 8px;font-size:11px}.language-toggle{font-size:12px;padding-inline:6px}.brand{font-size:14px}}
 
 .hero-actions{flex-wrap:wrap}.contact-link{flex-basis:100%;line-height:1.6;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+
+.footer-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px}.footer-links a{color:var(--accent)}
+.legal{max-width:760px;padding-block:56px 84px}.legal h1{font:500 42px/1.15 'IBM Plex Serif',Georgia,serif;letter-spacing:-.02em;margin:18px 0 10px}.legal h2{font:600 18px/1.4 'IBM Plex Sans',sans-serif;margin:38px 0 10px;color:var(--ink)}.legal p,.legal li{font-size:15px;line-height:1.75;color:var(--muted)}.legal p{margin:0 0 12px}.legal ul{margin:0 0 12px;padding-inline-start:20px}.legal li{margin-bottom:6px}
+.legal-switch{display:flex;gap:18px;font-size:14px}.legal-switch a{color:var(--muted)}.legal-switch a[aria-current=page]{color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:4px}
+.legal-updated{font-size:13px!important}.legal-draft{border:1px solid var(--rule);background:var(--surface);padding:12px 14px;font-size:13px!important;color:var(--ink)!important;margin:18px 0 26px!important}
+mark.placeholder{background:#FFF1B8;color:var(--ink);padding:0 3px;border-radius:2px;unicode-bidi:isolate}.legal-back{margin-top:40px!important}
+@media(max-width:760px){.footer-links{justify-self:end}.legal{padding-block:36px 60px}.legal h1{font-size:32px}}
+/* Phones: finger-sized tap targets (about 40–48px) for header links, language switch, buttons and footer links. */
+@media(max-width:520px){.nav nav{gap:2px}.nav nav a{display:inline-flex;align-items:center;min-height:40px;padding-inline:10px;font-size:13px}.nav-cta,.language-toggle{min-height:40px}.hero-actions{align-items:stretch}.hero-actions .button{min-height:48px;width:100%}.hero-actions .text-link{display:inline-flex;align-items:center;min-height:40px}.footer-links a,.footer>a:not(.brand){display:inline-flex;align-items:center;min-height:40px}}
+@media(pointer:coarse){.button,.download-button{min-height:44px}summary{min-height:44px}}

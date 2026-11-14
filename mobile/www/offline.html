@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Paver is offline</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px env(safe-area-inset-right) 24px env(safe-area-inset-left);background:#F3F2EE;color:#191919;font:16px system-ui,-apple-system,"Segoe UI","Noto Sans Arabic",sans-serif}
+.card{width:min(440px,100%);padding:32px 24px;border:1px solid #D8D6D0;border-radius:12px;background:#FFFEFB}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+.mark{width:36px;height:36px;border-radius:8px;background:#191919;color:#F3EFE3;display:grid;place-items:center;font-size:20px}
+h1{font-size:24px;margin:24px 0 8px}
+p{color:#5C5A55;line-height:1.7;font-size:15px;margin:0}
+section+section{margin-top:28px;padding-top:24px;border-top:1px solid #E6E3DC}
+button{margin-top:28px;width:100%;min-height:48px;border:0;border-radius:10px;background:#191919;color:#fff;font-size:16px;font-weight:600}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="brand"><span class="mark" aria-hidden="true">P</span><span>Paver · بيفر</span></div>
+  <section lang="en" dir="ltr">
+    <h1>Can’t reach Paver</h1>
+    <p>Check your internet connection and try again. Your company data is stored securely online, not on this phone.</p>
+  </section>
+  <section lang="ar" dir="rtl">
+    <h1>تعذّر الوصول إلى بيفر</h1>
+    <p>تحقّق من اتصالك بالإنترنت ثم أعد المحاولة. بيانات شركتك محفوظة بأمان على الإنترنت وليس على هذا الهاتف.</p>
+  </section>
+  <button type="button" id="retry">Try again · إعادة المحاولة</button>
+</main>
+<script>
+document.getElementById('retry').addEventListener('click', function () {
+  window.location.href = 'https://paver-ashy.vercel.app';
+});
+</script>
+</body>
+</html>
